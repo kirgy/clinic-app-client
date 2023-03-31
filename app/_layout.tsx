@@ -40,8 +40,6 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const colorScheme = useColorScheme();
-
   return (
     <>
       <URQLProvider value={urqlClient}>
@@ -51,7 +49,6 @@ function RootLayoutNav() {
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
               <Stack.Screen name="clinic" options={{}} />
               <Stack.Screen name="patients" options={{}} />
-              <Stack.Screen name="modal" options={{ presentation: "modal" }} />
             </Stack>
           </ThemeProvider>
         </NativeBaseProvider>

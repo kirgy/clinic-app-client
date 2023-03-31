@@ -23,7 +23,7 @@ const Clinic = ({ id, name, ...containerProps }: ClinicProps): JSX.Element => {
         <HStack space={4}>
           <Square>
             <Icon
-              as={<FontAwesome5 name="hospital-alt" />}
+              as={<FontAwesome5 name="hospital" />}
               color="neutral.800"
               size="xl"
             />

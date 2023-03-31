@@ -1,53 +1,52 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import { Pressable, useColorScheme } from 'react-native';
+import { FontAwesome5 } from "@expo/vector-icons";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { Tabs } from "expo-router";
+import { Icon } from "native-base";
+import { useColorScheme } from "react-native";
 
-import Colors from '../../constants/Colors';
+import theme from "../../features/theme/theme";
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
+  name: React.ComponentProps<typeof FontAwesome>["name"];
   color: string;
 }) {
   return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
 }
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-      }}>
+        tabBarActiveTintColor: theme.colors.neutral[50],
+        tabBarInactiveTintColor: theme.colors.neutral[300],
+        headerStyle: { backgroundColor: theme.colors.primary[400] },
+        headerTintColor: "#fff",
+        tabBarStyle: { backgroundColor: theme.colors.primary[400] },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
+          title: "Clinics",
+          tabBarIcon: ({ color }) => (
+            <Icon
+              as={<FontAwesome5 name="hospital" />}
+              size="md"
+              color={color}
+            />
           ),
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="about"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "About",
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="info-circle" color={color} />
+          ),
         }}
       />
     </Tabs>
