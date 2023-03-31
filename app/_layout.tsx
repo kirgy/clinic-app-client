@@ -1,14 +1,12 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
+import { DarkTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
+import { NativeBaseProvider } from "native-base";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
 import { Provider as URQLProvider } from "urql";
+import theme from "../features/theme/theme";
 import { urqlClient } from "../features/urql/urql";
 
 export {
@@ -47,14 +45,16 @@ function RootLayoutNav() {
   return (
     <>
       <URQLProvider value={urqlClient}>
-        <ThemeProvider
-          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-        >
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{ presentation: "modal" }} />
-          </Stack>
-        </ThemeProvider>
+        <NativeBaseProvider theme={theme}>
+          <ThemeProvider value={DarkTheme}>
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="clinic" options={{}} />
+              <Stack.Screen name="patients" options={{}} />
+              <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+            </Stack>
+          </ThemeProvider>
+        </NativeBaseProvider>
       </URQLProvider>
     </>
   );

@@ -2,18 +2,18 @@ import { gql } from "urql";
 import PatientFragment from "../urql/fragments/patientFragment.graphql";
 
 const GET_CLINICS = gql`
-  query GetClinic {
+  query GetClinics {
     getClinics {
       id
       originId
       name
-      patients {
-        ...PatientFragment
-      }
+      # patients {
+      #   ...PatientFragment
+      # }
     }
   }
 
-  ${PatientFragment}
+  # ${PatientFragment}
 `;
 
 export default GET_CLINICS;

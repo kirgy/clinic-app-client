@@ -2,7 +2,6 @@ import { CodegenConfig } from "@graphql-codegen/cli";
 
 const graphuri = process.env.GRAPHQL_ENDPOINT as string;
 
-console.log({ graphuri });
 const config: CodegenConfig = {
   schema: {
     [graphuri]: {
